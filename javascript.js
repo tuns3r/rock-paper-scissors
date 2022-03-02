@@ -22,6 +22,7 @@ function playerPlay(item) {
     }
 }
 
+// Tie breaker works for all the three but for some reason only rock works for win or lose. Get undefined
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         return "It's a tie."
@@ -54,6 +55,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+// Only will play one game still
 function game() {
     for (let i = 0; i < 5; i++) {
         console.log(playRound(playerSelection, computerSelection));
