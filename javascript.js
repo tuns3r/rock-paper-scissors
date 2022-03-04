@@ -1,71 +1,73 @@
 function computerPlay(number) {
     if (number === 0) {
-        return "Rock"; 
+        return "rock"; 
     } else if (number === 1) {
-        return "Paper"
+        return "paper";
     } else if (number === 2) {
-        return "Scissors"
+        return "scissors";
     } else {
-        return "Something else went wrong"
+        return "Something else went wrong";
     }
 }
 
 function playerPlay(item) {
     if (item == 'rock') {
-        return "Rock"
+        return "rock";
     } else if (item == 'paper') {
-        return "Paper"
+        return "paper";
     } else if (item == 'scissors') {
-        return "Scissors"
-    } else {
-        return "Invalid Item"
+        return "scissors";
     }
 }
 
-// Tie breaker works for all the three but for some reason only rock works for win or lose. Get undefined
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        return "It's a tie."
-    }
-
-    if (playerSelection === 'Rock') {
-        if (computerSelection === 'Paper') {
+        return "It's a tie"; 
+    } else if (playerSelection === 'rock') {
+        if (computerSelection === 'paper') {
+            computerScore++; 
             return "You lose! Paper beats Rock.";  
-            computerScore++; 
-        } else if (computerSelection === 'Scissors') {
-            return "You win! Rock beats Scissors."
+        } else if (computerSelection === 'scissors') {
             playerScore++; 
+            return "You win! Rock beats Scissors.";
         }
-    } else if (playerSelection === 'Paper') {
-        if (computerPlay === 'Rock') {
-            return "You win! Paper beats rock."
+    } else if (playerSelection == 'paper') {
+        if (computerSelection == 'rock') {
             playerScore++; 
-        } else if (computerPlay === 'Scissors') {
-            return "You lose! Scissors beats Paper."
+            return "You win! Paper beats rock.";
+        } else if (computerSelection == 'scissors') {
             computerScore++; 
+            return "You lose! Scissors beats Paper.";
         }
-    } else if (playerSelection === 'Scissors') {
-        if (computerPlay === 'Rock') {
-            return "You lose! Rock beats Scissors."
+    } else if (playerSelection === 'scissors') {
+        if (computerSelection === 'rock') {
             computerScore++; 
-        }   else if (computerPlay === 'Paper') {
-            return "You win! Scissors beats Paper."
+            return "You lose! Rock beats Scissors.";
+        } else if (computerSelection === 'paper') {
             playerScore++; 
+            return "You win! Scissors beats Paper.";
         }
     }
 }
 
-// Only will play one game still
+// Have it repeating five times now but uses players pick for all five rounds
 function game() {
     for (let i = 0; i < 5; i++) {
         console.log(playRound(playerSelection, computerSelection));
-        return "Computer score: " + computerScore; 
-        return "Player Score: " + playerScore; 
-        i++; 
+        console.log("Computer score: " + computerScore); 
+        console.log("Player Score: " + playerScore); 
+    }
+
+    if (playerScore > computerScore) {
+        return "Player Wins!";
+    } else if (playerScore < computerScore) {
+        return "Computer Wins!"; 
+    } else {
+        return "Somehow you tied!"; 
     }
 }
 
-let prompt = window.prompt("Enter Rock, Paper or Scissors: ")
+let prompt = window.prompt("Enter Rock, Paper or Scissors: ");
 let randomNumber = Math.floor(Math.random() * 3); 
 
 const computerSelection = computerPlay(randomNumber); 
@@ -74,4 +76,4 @@ const playerSelection = playerPlay(prompt.toLowerCase());
 let computerScore = 0; 
 let playerScore = 0; 
 
-game(); 
+game();
