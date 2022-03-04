@@ -50,9 +50,10 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-// Have it repeating five times now but uses players pick for all five rounds
 function game() {
     for (let i = 0; i < 5; i++) {
+        let prompt = window.prompt("Enter Rock, Paper or Scissors: ");
+        const playerSelection = playerPlay(prompt.toLowerCase()); 
         console.log(playRound(playerSelection, computerSelection));
         console.log("Computer score: " + computerScore); 
         console.log("Player Score: " + playerScore); 
@@ -67,11 +68,9 @@ function game() {
     }
 }
 
-let prompt = window.prompt("Enter Rock, Paper or Scissors: ");
 let randomNumber = Math.floor(Math.random() * 3); 
 
 const computerSelection = computerPlay(randomNumber); 
-const playerSelection = playerPlay(prompt.toLowerCase()); 
 
 let computerScore = 0; 
 let playerScore = 0; 
